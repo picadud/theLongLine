@@ -24,6 +24,7 @@ instance : TopologicalSpace L := Preorder.topology L
 #check Uncountable
 #check exists_countable_basis
 #check singletons_open_iff_discrete
+#check IsTopologicalBasis.isOpen_iff
 lemma not_second_countable_if_uncountable_discrete_subset (X: Type) [hX:TopologicalSpace X]
     (S: Set X) (h: ¬ S.Countable) (h1: DiscreteTopology S): ¬ SecondCountableTopology X:= by
   by_contra hX
@@ -31,7 +32,7 @@ lemma not_second_countable_if_uncountable_discrete_subset (X: Type) [hX:Topologi
   apply exists_countable_basis at hX
   cases' hX with B hB
   cases' hB with hBc hB
-  cases' hB with hB1 hB2?
+  cases' hB with hB1 hB2
   rw[ ← singletons_open_iff_discrete ] at h1
   have hS: Nonempty S := by
     refine nonempty_iff_ne_empty'.mpr ?_
@@ -39,7 +40,8 @@ lemma not_second_countable_if_uncountable_discrete_subset (X: Type) [hX:Topologi
     have he: (∅: Set X).Countable := by exact Subsingleton.to_countable
     rw[← hse] at he
     exact h he
-
+  have h2: ∀ (K : Set S) , IsOpen K  → ∃(Uₖ: Set X), IsOpen Uₖ ∧ Uₖ ∩ S = K := by sorry
+  /--use subtype.val with is seemingly the function that induces the subspace topology, leansearch:Topology,IsInducing,subtypeVal-/
 
 
 
