@@ -40,7 +40,12 @@ lemma not_second_countable_if_uncountable_discrete_subset (X: Type) [hX:Topologi
     have he: (∅: Set X).Countable := by exact Subsingleton.to_countable
     rw[← hse] at he
     exact h he
-  have h2: ∀ (K : Set S) , IsOpen K  → ∃(Uₖ: Set X), IsOpen Uₖ ∧ Uₖ ∩ S = K := by sorry
+  have h2: ∀ (K : Set S) , IsOpen K  → ∃(Uₖ: Set X), IsOpen Uₖ ∧ Uₖ ∩ S = K := by
+    intro K hK
+    let f:Set X → Set ↑S:= fun (x: Set X) ↦ ((x ∩ S):{x1 : X // x1 ∈ S} )
+
+
+
   /--use subtype.val with is seemingly the function that induces the subspace topology, leansearch:Topology,IsInducing,subtypeVal-/
 
 
