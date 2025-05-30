@@ -158,10 +158,17 @@ lemma not_second_countable_if_uncountable_discrete_subset (X: Type) [hX:Topologi
 --#print axioms not_second_countable_if_uncountable_discrete_subset
 
 theorem firstCountable_LongLine : FirstCountableTopology L := by
-  let foo : ℕ := 37
-  let S' : Set L := S
-  have hs: DiscreteTopology S := by sorry
+
+  constructor
+  intro a
+  rw[Filter.isCountablyGenerated_iff_exists_antitone_basis]
+  let a2 := a.2
+  --def f: ℕ → Set L := fun x => { p | p.1 = a.1, p.2 = (a2 - 1 / x , a2 + 1/x) } define a function like this
+
+
   sorry
 
 theorem not_secondCountable_LongLine: ¬ SecondCountableTopology L:= by
+  let S' : Set L := S
+  have hs: DiscreteTopology S := by sorry
   sorry
